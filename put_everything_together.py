@@ -26,24 +26,4 @@ for file in tests:
         #show_image(im)
         results.append(clf.predict(im.reshape(1,-1)))
     results=np.stack(results).astype(int)
-    print(f"the dice in {file} are {results.tolist()}, the total is {results.sum()}")        
-        
-#%%
-
-clf = pickle.load(open( "model_rf.pkl", "rb" ))# trained in classify dice
-tests_folder="tests"
-tests=listdir(tests_folder)
-for file in tests:
-    image=imread(tests_folder+"/"+file)
-    cropped_dice=crop_dice(image,degree_rotation=0)
-    results=[]
-    for image in cropped_dice:
-        im=threshold_a_die(rgb2gray(image))
-        #show_image(im)
-        im=center_and_clean(im)
-        #show_image(im)
-        results.append(clf.predict(im.reshape(1,-1)))
-    results=np.stack(results).astype(int)
-    print(f"the dice in {file} are {results.tolist()}, the total is {results.sum()}")        
-        
-#%%
+    print(f"the dice in {file} are {results.tolist()}, the total is {results.sum()}")
